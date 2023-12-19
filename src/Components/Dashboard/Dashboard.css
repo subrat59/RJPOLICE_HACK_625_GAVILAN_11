@@ -1,0 +1,39 @@
+.main{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.input{
+    width: 600px;
+    height: 50px;
+    padding: 10px;
+    background-color: transparent;
+    border: green 2px solid;
+    color: red;
+    font-size: 1rem;
+    margin: 20px;
+    border-radius: 30px;
+}
+.btn1{
+    width: 100px;
+    height: 50px;
+    border: rgb(118, 21, 21) solid 2px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    border: none;
+}
+.btnbox{
+    color: white;
+}
+.btn{
+    font: 10rem;
+}
