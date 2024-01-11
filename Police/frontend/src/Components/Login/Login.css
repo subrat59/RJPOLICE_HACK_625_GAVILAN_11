@@ -1,0 +1,94 @@
+.login_bg{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    background: url('./_cc1e5490-cf16-4e15-a987-e559a03c4c67.jpeg');
+}
+.loginbg{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    /* background: url('./_cc1e5490-cf16-4e15-a987-e559a03c4c67.jpeg'); */
+    
+}
+
+.wrapper {
+    width: 25%;
+    height: 60%;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: rgba(0, 1, 3, 0.321);
+    transition: box-shadow 0.3s ease;
+}
+
+.wrapper:hover {
+    box-shadow: 0px 0px 50px rgb(0, 9, 38);
+}
+
+.signin {
+    margin-left: 40%;
+    margin-top: 20%;
+    font-size: 2rem;
+    font-weight: bold;
+    color: transparent;
+    background: linear-gradient(to right, orange, white, green);
+    background-clip: text;
+}
+
+
+.userandpass {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 70px;
+    margin-left: 40px;
+    width: 100%;
+    align-items: flex-start;
+    color: rgba(249, 246, 246, 0.941);
+    font-weight: 900;
+    font-size: 1.3rem;
+}
+
+.input {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    width: 70%;
+    height: 25px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 2px solid rgb(242, 239, 239);
+    color: white;
+    font-size: 1.2rem;
+    transition: 0.5s;
+}
+.input:hover{
+    transform: scale(1.05);
+}
+
+.btn {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    margin: 40px;
+    width: 80%;
+    height: 40px;
+    border-radius: 30px;
+    background: linear-gradient(to right,orange,white,green);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bolder;  
+    color: blue;  
+    border: none;
+}
+.button:hover{
+    box-shadow: 0 0 20px rgb(212, 21, 53);
+}

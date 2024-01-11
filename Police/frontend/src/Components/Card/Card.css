@@ -1,0 +1,93 @@
+
+.cardwrapper{
+    display: flex;
+    width: 800px;
+    height: 300px;
+    background: transparent;
+    border: 3px solid aqua;
+    border-radius: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(20px);
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.cardwrapper:hover {
+  box-shadow: 0px 0px 50px rgb(163, 179, 231);
+}
+
+.cardcontents{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* background-color: red; */
+    height: 100%;
+    width: 70%;
+    margin-left: 10px;
+    color: white;
+}
+.title{
+    margin-left: 40%;
+}
+.links{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 100%;
+    font-weight: bold;
+    }
+
+    .cardbtns{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        gap: 30px;
+    }
+
+    .cardimage {
+        background-color: #1f1c1c;
+        width: 30%;
+        height: 100%;
+        border-radius: 30px;
+        overflow: hidden;
+        transition: transform 0.5s ease-in-out; /* Add a smooth transition effect */
+      }
+      
+      .cardimage:hover {
+        transform: scale(3); 
+        z-index: 2;
+        
+      }
+      
+      .loadingbarout{
+        width: 200px;
+        height: 20px;
+        border: 2px solid aqua;
+        margin-top: 20px;
+        margin-left: 32%;
+        border-radius: 10px;
+      }
+      .loadingbar{
+        width: 200px;
+        height: 100%;
+        background-color: red;
+        border-radius: 10px;
+      }
+      .cardbtn{
+        font-size: 1rem;
+        font-weight: bold;
+        width: 100px;
+        height: auto;
+        border-radius: 5px;
+        cursor: pointer;
+        color: rgb(0, 55, 255);
+        border: none;
+        background: linear-gradient(to right,orange,white,green);
+        transition: 0.2s;
+    }
+
+    .cardbtn:hover{
+      transform: scale(1.1);
+      box-shadow: 0px 0px 5px rgb(255, 255, 255);
+    }
