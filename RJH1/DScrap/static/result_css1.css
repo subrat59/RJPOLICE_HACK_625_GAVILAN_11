@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(51, 51, 51);
+    margin: 20px;
+}
+
+h1 {
+    color: #ffffff;
+}
+p{
+    color: white;
+    font-weight: bolder;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: white;
+    font-weight: bold;
+}
+
+th {
+    background-color: #f2f2f2;
+    color:black;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+}
