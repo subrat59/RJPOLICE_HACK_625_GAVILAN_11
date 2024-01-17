@@ -113,15 +113,15 @@ def DWeb_Scraper(request_client):
         not_evil_url= "http://notevilmtxf25uw7tskqxj6njlpebyrmlrerfv5hc4tuq7c7hilbyiqd.onion/index.php?q={}".format(user_input)
         deep_search_url= "http://search7tdrcvri22rieiwgi5g46qnwsesvnubqav2xakhezv4hjzkkad.onion/result.php?search={}".format(user_input)
         search_site("ahmia",ahmia_url)
-        # search_site("not_evil",not_evil_url)
-        # search_site("deep_search",deep_search_url)
-        # search_site("torch",torch_url)
+        search_site("not_evil",not_evil_url)
+        search_site("deep_search",deep_search_url)
+        search_site("torch",torch_url)
 
         session = get_tor_session()
         timestamp = datetime.datetime.now()
         # for onion_sites in data_scraped:
         
-        for onion_sites in range(3):  #To Limit the number of results
+        for onion_sites in range(15):  #To Limit the number of results
             # url = "http://" + onion_sites
            
             url = "http://" + scraped_sites[onion_sites]
@@ -191,7 +191,7 @@ def auto_Scraper(request_client):
     reachable_sites.clear()
     scraped_sites.clear()
     imagelink.clear()
-    keywords = ["Credit Cards","Guns","Debit Cards"]
+    keywords = ["Credit Cards","Guns","Debit Cards","drugs","Weapons","Human Trafficing","Bombs","Visa Cards","Organs"]
     print("Starting Tor")
     tor_process = tor_start()
     print("Tor Running")
@@ -207,14 +207,14 @@ def auto_Scraper(request_client):
             deep_search_url= "http://search7tdrcvri22rieiwgi5g46qnwsesvnubqav2xakhezv4hjzkkad.onion/result.php?search={}".format(user_input)
             scraped_sites.clear()
             search_site("ahmia",ahmia_url)
-            # search_site("not_evil",not_evil_url)
-            # search_site("deep_search",deep_search_url)
-            # search_site("torch",torch_url)
+            search_site("not_evil",not_evil_url)
+            search_site("deep_search",deep_search_url)
+            search_site("torch",torch_url)
 
             session = get_tor_session()
             timestamp = datetime.datetime.now()
             # for onion_sites in data_scraped:
-            max_iterations = int(min(2, len(scraped_sites)))
+            max_iterations = int(min(15, len(scraped_sites)))
             for onion_sites in range(max_iterations):  #To Limit the number of results
                 # url = "http://" + onion_sites
 
@@ -504,11 +504,6 @@ def circuit_info():
             return relays
         except:
             relays.clear()
-            l = [('1F2FC2214D63A90926D0A6837896F84A16F4DB60', 'Cornball'),('BF36E3E5386F740E851C32E522238C59A0A39E6F', 'ididnteditheconfig'),('39F096961ED2576975C866D450373A9913AFDC92', 'shhovh')]
-            for i in range(len(l)):
-                s=f"{l[i]}"
-                relays.append(s)
-                print(s)
             return relays
 
 
@@ -559,9 +554,9 @@ upload_location = str(os.getenv('upload_location'))
 def ss_link_generate(path):
 
     cloudinary.config( 
-      cloud_name = "ddm0yafiw", 
-      api_key = "678576425819145", 
-      api_secret = "_ameGjq5NqFIfb8xFmiKzlADNxk" 
+      cloud_name = str(os.getenv('cloud_name')), 
+      api_key = str(os.getenv('api_key')), 
+      api_secret = str(os.getenv('api_secret')) 
     )
 
     save = uploader.upload(upload_location, 
