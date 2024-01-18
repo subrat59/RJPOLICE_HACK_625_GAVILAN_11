@@ -24,6 +24,7 @@ from tbselenium.tbdriver import TorBrowserDriver
 from tbselenium.utils import start_xvfb, stop_xvfb
 from os.path import join, dirname, realpath
 from dotenv import load_dotenv
+from concurrent.futures import ThreadPoolExecutor
 load_dotenv()
 # from decouple import config
 
@@ -45,6 +46,8 @@ def index_DWeb(request_client):
 reachable_sites=[]
 scraped_sites=[]
 imagelink=[]
+user_inputs=[]
+
 def search_site(search_engine,link):
     
     useragents = ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19577", "Mozilla/5.0 (X11) AppleWebKit/62.41 (KHTML, like Gecko) Edge/17.10859 Safari/452.6", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2656.18 Safari/537.36", "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/44.0.2403.155 Safari/537.36",
@@ -93,12 +96,38 @@ def login(request_client):
         is_checker = 'no'
 
     return JsonResponse({'checker': is_checker})
+relays = []
+def process_site(session,user_input1,onion_sites):
+    url = "http://" + scraped_sites[onion_sites]
+    print(url)
+    # relays.insert(len(relays),circuit_info())
+    relays.insert(len(relays),circuit_info())
+    try:
+        response_url = session.get(url)
+        if (response_url.ok):
 
+            print(200)
+            link =Title.objects.filter(link=url)
+            if link.exists():
+                        print("already exists")
+            else:
+                Title.objects.create(title=user_input1.lower(), link=url)
+            reachable_sites.append(scraped_sites[onion_sites])
+            imagelink.append(get_image_url_for_url(url))
+            user_inputs.append(user_input1)
+            
+
+                   
+                        
+    except:
+        print("Unreachable")
+    
 def DWeb_Scraper(request_client):
-    user_inputs=[]
+    user_inputs.clear()
     reachable_sites.clear()
     scraped_sites.clear()
     imagelink.clear()
+    relays.clear()
     print("Starting Tor")
     tor_process = tor_start()
     print("Tor Running")
@@ -119,41 +148,23 @@ def DWeb_Scraper(request_client):
 
         session = get_tor_session()
         timestamp = datetime.datetime.now()
+        with ThreadPoolExecutor(max_workers=10) as executor:
+            futures=[]
         # for onion_sites in data_scraped:
         
-        for onion_sites in range(15):  #To Limit the number of results
+            for onion_sites in range(15):  #To Limit the number of results
             # url = "http://" + onion_sites
-           
-            url = "http://" + scraped_sites[onion_sites]
-            print(url)
-            relays=circuit_info()
-            try:
-                response_url = session.get(url)
-                if (response_url.ok):
-
-                    print(200)
-                    link =Title.objects.filter(link=url)
-                    if link.exists():
-                        print("already exists")
-                    else:
-                        Title.objects.create(title=user_input1, link=url)
-                    reachable_sites.append(scraped_sites[onion_sites])
-                    imagelink.append(get_image_url_for_url(url))
-                    user_inputs.append(user_input1)
-
-                   
-                        
-            except:
-                print("Unreachable")
-        
+                futures.append(executor.submit(process_site,session,user_input1,onion_sites))
+            for future in futures:
+                future.result()
+            
+        print(relays)
 
         response_data = {
                 'reached_sites': reachable_sites,
                 'user_input': user_inputs,
                 'images':imagelink,
-                "relay1":relays[0],
-                "relay2":relays[1],
-                "relay3":relays[2]
+                'relays':relays                
             }
         print("Killing Tor")
         tor_process.kill()
@@ -187,11 +198,12 @@ def initial_result(keywords):
     return res
 
 def auto_Scraper(request_client):
-    user_inputs=[]
+    user_inputs.clear()
     reachable_sites.clear()
     scraped_sites.clear()
     imagelink.clear()
-    keywords = ["Credit Cards","Guns","Debit Cards","drugs","Weapons","Human Trafficing","Bombs","Visa Cards","Organs"]
+    relays.clear()
+    keywords = ["Credit Cards","Guns"]
     print("Starting Tor")
     tor_process = tor_start()
     print("Tor Running")
@@ -214,40 +226,22 @@ def auto_Scraper(request_client):
             session = get_tor_session()
             timestamp = datetime.datetime.now()
             # for onion_sites in data_scraped:
-            max_iterations = int(min(15, len(scraped_sites)))
-            for onion_sites in range(max_iterations):  #To Limit the number of results
+            max_iterations = int(min(10, len(scraped_sites)))
+            with ThreadPoolExecutor(max_workers=10) as executor:
+                futures=[]
+                for onion_sites in range(max_iterations):  #To Limit the number of results
                 # url = "http://" + onion_sites
 
-                url = "http://" + scraped_sites[onion_sites]
-                print(url)
-                relays=circuit_info()
-                try:
-                    response_url = session.get(url)
-                    if (response_url.ok):
+                    futures.append(executor.submit(process_site,session,user_input1,onion_sites))
+                for future in futures:
+                    future.result()
 
-                        print(200)
-                        link =Title.objects.filter(link=url)
-                        if link.exists():
-                            print("already exists")
-                        else:
-                            Title.objects.create(title=user_input1, link=url)
-                        reachable_sites.append(scraped_sites[onion_sites])
-                        imagelink.append(get_image_url_for_url(url))
-                        user_inputs.append(user_input1)
-
-
-
-                except:
-                    print("Unreachable")
-
-
+        print(relays)
         response_data = {
                 'reached_sites': reachable_sites,
                 'user_input': user_inputs,
                 'images':imagelink,
-                "relay1":relays[0],
-                "relay2":relays[1],
-                "relay3":relays[2]
+                'relays':relays
             }
         print("Killing Tor")
         tor_process.kill()
@@ -465,7 +459,6 @@ def upload_photo(file_path,user_input):
     
     print(f"Uploaded file: {file_link}")
     os.remove(file_path)
-    #gdown.download_folder("https://drive.google.com/drive/folders/1TPMiu4rRgDlu0f_RkFRpJsoHGovRtQ_u")
 
 
 def delete_all_files_in_folder(service, folder_id):
@@ -542,6 +535,7 @@ def view_archives_dashboard(request_client):
 
         # Create a JSON response with the image links
         response_data = {'links': links,'user_input':user_input}
+        print(response_data)
         return JsonResponse(response_data)
 
     except Exception as e:
@@ -554,9 +548,9 @@ upload_location = str(os.getenv('upload_location'))
 def ss_link_generate(path):
 
     cloudinary.config( 
-      cloud_name = str(os.getenv('cloud_name')), 
-      api_key = str(os.getenv('api_key')), 
-      api_secret = str(os.getenv('api_secret')) 
+      cloud_name = "__YOUR CLOUD NAME__", 
+      api_key = "__YOUR API KEY__", 
+      api_secret = "__YOUR API SECRET__" 
     )
 
     save = uploader.upload(upload_location, 
