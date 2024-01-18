@@ -1,145 +1,222 @@
+.cardback{
+  display: flex;flex-direction: column;
+}
 
+
+.cardsearchinput{
+  width: 200px;
+  margin-left: 80%;
+  margin-bottom: 20px;
+  border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 2px solid rgb(207, 193, 193);
+    color: white;
+    font-size: 1.2rem;
+}
+
+.tabledata{
+  transition: 0.8s;
+  cursor: pointer;
+}
+.tabledata:hover{
+  transform: scale(1.05);
+}
 .cardwrapper{
-    display: flex;
-    width: 800px;
-    height: 400px;
-    background: transparent;
-    border: 3px solid aqua;
-    border-radius: 30px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    backdrop-filter: blur(20px);
-    transition: 0.5s;
-    cursor: pointer;
+  display: flex;
+  width: 800px;
+  height: 400px;
+  background: transparent;
+  border: 3px solid aqua;
+  border-radius: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(20px);
+  transition: 0.5s;
+  cursor: pointer;
 }
 
 .cardwrapper:hover {
-  box-shadow: 0px 0px 50px rgb(163, 179, 231);
+box-shadow: 0px 0px 50px rgb(163, 179, 231);
 }
 
 .cardcontents{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    /* background-color: red; */
-    height: 100%;
-    width: 70%;
-    margin-left: 10px;
-    color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* background-color: red; */
+  height: 100%;
+  width: 70%;
+  margin-left: 10px;
+  color: white;
 }
 .title{
-    margin-left: 40%;
+  margin-left: 40%;
 }
 .links{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    font-weight: bold;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  font-weight: bold;
+  }
 
-    .cardbtns{
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        gap: 30px;
-    }
+  .cardbtns{
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 30px;
+  }
 
-    .cardimage {
-        background-color: #1f1c1c;
-        width: 30%;
-        height: 100%;
-        border-radius: 30px;
-        overflow: hidden;
-        transition: transform 0.5s ease-in-out; /* Add a smooth transition effect */
-      }
-      
-      .cardimage:hover {
-        transform: scale(3); 
-        z-index: 2;
-        
-      }
-      
-      .loadingbarout{
-        width: 200px;
-        height: 20px;
-        border: 2px solid aqua;
-        margin-top: 20px;
-        margin-left: 32%;
-        border-radius: 10px;
-      }
-      .loadingbar{
-        width: 200px;
-        height: 100%;
-        background-color: red;
-        border-radius: 10px;
-      }
-      .cardbtn{
-        font-size: 1rem;
-        font-weight: bold;
-        width: 100px;
-        height: auto;
-        border-radius: 5px;
-        cursor: pointer;
-        color: rgb(0, 55, 255);
-        border: none;
-        background: linear-gradient(to right,orange,white,green);
-        transition: 0.2s;
-    }
-
-    .cardbtn:hover{
-      transform: scale(1.1);
-      box-shadow: 0px 0px 5px rgb(255, 255, 255);
-    }
-
-    .cardloader {
-      width: 150px;
-      height: 150px;
-      border-left: 5px solid #38ff8e;
-      border-radius: 50%;
-      animation: right5231 0.9s linear infinite;
+  .cardimage {
+      background-color: #1f1c1c;
+      width: 30%;
+      height: 100%;
+      border-radius: 30px;
+      overflow: hidden;
+      transition: transform 0.5s ease-in-out; /* Add a smooth transition effect */
     }
     
-    .cardloader::before,
-      .cardloader::after {
-      content: "";
-      width: 120px;
-      height: 120px;
-      display: block;
-      position: absolute;
-      top: calc(50% - 60px);
-      left: calc(50% - 60px);
-      border-right: 5px solid #ffbe0b;
-      border-radius: 50%;
-      animation: left036 0.9s linear infinite;
+    .cardimage:hover {
+      transform: scale(3); 
+      z-index: 2;
+      
     }
     
+    .loadingbarout{
+      width: 200px;
+      height: 20px;
+      border: 2px solid aqua;
+      margin-top: 20px;
+      margin-left: 32%;
+      border-radius: 10px;
+    }
+    .loadingbar{
+      width: 200px;
+      height: 100%;
+      background-color: red;
+      border-radius: 10px;
+    }
+    .cardbtn{
+      font-size: 1rem;
+      font-weight: bold;
+      width: 100px;
+      height: auto;
+      border-radius: 5px;
+      cursor: pointer;
+      color: rgb(0, 55, 255);
+      border: none;
+      background: linear-gradient(to right,orange,white,green);
+      transition: 0.2s;
+  }
+
+  .cardbtn:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 5px rgb(255, 255, 255);
+  }
+
+  .cardloader {
+    width: 150px;
+    height: 150px;
+    border-left: 5px solid #38ff8e;
+    border-radius: 50%;
+    animation: right5231 0.9s linear infinite;
+  }
+  
+  .cardloader::before,
     .cardloader::after {
-      width: 90px;
-      height: 90px;
-      top: calc(50% - 45px);
-      left: calc(50% - 45px);
-      border: 0;
-      border-top: 5px solid #ff086e;
-      animation: none;
+    content: "";
+    width: 120px;
+    height: 120px;
+    display: block;
+    position: absolute;
+    top: calc(50% - 60px);
+    left: calc(50% - 60px);
+    border-right: 5px solid #ffbe0b;
+    border-radius: 50%;
+    animation: left036 0.9s linear infinite;
+  }
+  
+  .cardloader::after {
+    width: 90px;
+    height: 90px;
+    top: calc(50% - 45px);
+    left: calc(50% - 45px);
+    border: 0;
+    border-top: 5px solid #ff086e;
+    animation: none;
+  }
+  
+  @keyframes right5231 {
+    from {
+      transform: rotate(0deg);
     }
-    
-    @keyframes right5231 {
-      from {
-        transform: rotate(0deg);
-      }
-    
-      to {
-        transform: rotate(360deg);
-      }
+  
+    to {
+      transform: rotate(360deg);
     }
-    
-    @keyframes left036 {
-      from {
-        transform: rotate(720deg);
-      }
-    
-      to {
-        transform: rotate(0deg);
-      }
+  }
+  
+  @keyframes left036 {
+    from {
+      transform: rotate(720deg);
     }
+  
+    to {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+  margin-left: 90%;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #9fccfa;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2em;
+  width: 2em;
+  inset: 0;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.switch input:checked + .slider {
+  background: #0974f1;
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px #0974f1;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(1.6em);
+}
