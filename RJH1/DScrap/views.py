@@ -203,7 +203,7 @@ def auto_Scraper(request_client):
     scraped_sites.clear()
     imagelink.clear()
     relays.clear()
-    keywords = ["Credit Cards","Guns"]
+    keywords = ["drugs","Credit Cards","Guns","weapons","bombs","payment cards","passport","organs","human trafficing"]
     print("Starting Tor")
     tor_process = tor_start()
     print("Tor Running")
